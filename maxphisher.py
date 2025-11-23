@@ -1186,7 +1186,10 @@ def requirements():
     if isfile(f"{sites_dir}/version.txt"):
         with open(f"{sites_dir}/version.txt", "r") as sites_file:
             zipver=sites_file.read().strip()
-            if float(version) > float(zipver):
+            if version.replace('.', '').isdigit() and zipver.replace('.', '').isdigit():
+    if float(version) > float(zipver):
+        pass
+
                 # download(websites_url, "maxsites.zip")
                 print(f"\n{info2}Downloading website files....{nc}")
                 delete(sites_dir)
